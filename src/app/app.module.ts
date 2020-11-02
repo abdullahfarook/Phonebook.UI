@@ -11,8 +11,7 @@ import { SalesTaxModule } from './sales-tax/sales-tax.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SalesTaxModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

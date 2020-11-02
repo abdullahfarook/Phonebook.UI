@@ -1,159 +1,136 @@
 <!--begin::Inner Body Content-->
 <div class="flex-row-fluid ml-lg-8">
-  <!--begin::Card Personal Info Form Body-->
-  <div class="card card-custom card-stretch">
-    <!--begin::Header-->
-    <div class="card-header py-3">
-      <div class="card-title align-items-start flex-column">
-        <h1 class="font-weight-bolder text-dark mb-0">Sales Tax Settings</h1>
-      </div>
-    </div>
-    <!--end::Header-->
-
-    <!--begin::Body-->
-    <div class="card-body">
-      <!--begin::Form-->
-      <form class="form"
-            [formGroup]="form">
-        <div class="row">
-          <div class="col-sm-6">
-            <label class="font-weight-bolder font-size-14"> Tax Name <span
-                    class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
-            <input type="text"
-                   class="form-control cust-input-focus"
-                   placeholder="Enter tax name"
-                   formControlName="name"
-                   spellcheck="false"
-                   data-ms-editor="true">
+    <!--begin::Card Personal Info Form Body-->
+    <div class="card card-custom card-stretch">
+        <!--begin::Header-->
+        <div class="card-header py-3">
+            <div class="card-title align-items-start flex-column">
+                <h1 class="font-weight-bolder text-dark mb-0">Sales Tax Settings</h1>
             </div>
-          <div class="col-sm-6">
-            <label class="font-weight-bolder font-size-14"> Abbreviation <span
-                    class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
-            <input type="text"
-                   class="form-control cust-input-focus"
-                   placeholder="Enter abbreviation"
-                   formControlName="abbreviation"
-                   spellcheck="false"
-                   data-ms-editor="true">
-            
-          </div>
         </div>
-        <div class="row mt-5">
-          <div class="col-sm-12">
-            <label class="font-weight-bolder font-size-14"> Description <span
+        <!--end::Header-->
+
+        <!--begin::Body-->
+        <div class="card-body">
+            <!--begin::Form-->
+            <form class="form" [formGroup]="form">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="font-weight-bolder font-size-14"> Tax Name <span
                     class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
-            <textarea class="form-control cust-input-focus h-55"
-                      placeholder="Enter description"
-                      formControlName="description"
-                      spellcheck="false"
-                      data-ms-editor="true"></textarea>
-            
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-sm-4">
-            <label class="font-weight-bolder font-size-14"> Tax Number <span
+                        <input type="text" class="form-control cust-input-focus" placeholder="Enter tax name" formControlName="name" spellcheck="false" data-ms-editor="true">
+                        <div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)" class="alert alert-danger">
+
+                            <div *ngIf="form.get('name').errors.required">
+                                Name is required.
+                            </div>
+                            <div *ngIf="form.get('name').errors.minlength">
+                                Name must be at least 4 characters long.
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="font-weight-bolder font-size-14"> Abbreviation <span
                     class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
-            <input type="text"
-                   class="form-control cust-input-focus"
-                   placeholder="Enter tax number"
-                   formControlName="number"
-                   spellcheck="false"
-                   data-ms-editor="true">
+                        <input type="text" class="form-control cust-input-focus" placeholder="Enter abbreviation" formControlName="abbreviation" spellcheck="false" data-ms-editor="true">
+
+                    </div>
                 </div>
-          <div class="col-sm-8">
-            <div class="form-group"
-                 style="margin-top: -10px;">
-              <label> </label>
-              <div class="checkbox-inline">
-                <label class="checkbox checkbox-success">
+                <div class="row mt-5">
+                    <div class="col-sm-12">
+                        <label class="font-weight-bolder font-size-14"> Description <span
+                    class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
+                        <textarea class="form-control cust-input-focus h-55" placeholder="Enter description" formControlName="description" spellcheck="false" data-ms-editor="true"></textarea>
+
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-sm-4">
+                        <label class="font-weight-bolder font-size-14"> Tax Number <span
+                    class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
+                        <input type="text" class="form-control cust-input-focus" placeholder="Enter tax number" formControlName="number" spellcheck="false" data-ms-editor="true">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group" style="margin-top: -10px;">
+                            <label> </label>
+                            <div class="checkbox-inline">
+                                <label class="checkbox checkbox-success">
                   <input type="checkbox"
                          formControlName="showTaxOnInvoices">
                   <span></span>
                   Show tax number on invoices
                 </label>
-                <label class="checkbox checkbox-success">
+                                <label class="checkbox checkbox-success">
                   <input type="checkbox"
                          formControlName="isTaxRecoverable">
                   <span></span>
                   This tax is recoverable
                 </label>
-                <a href="javascript:;"
-                   class="text-success">Learn more about recoverable and non-recoverable taxes </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="checkbox-list mt-3">
-              <label class="checkbox checkbox-success">
+                                <a href="javascript:;" class="text-success">Learn more about recoverable and non-recoverable taxes </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="checkbox-list mt-3">
+                            <label class="checkbox checkbox-success">
                 <input type="checkbox"
                        formControlName="isCompoundTax">
                 <span></span>
                 This is a compound tax
               </label>
-            </div>
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-sm-4">
-            <label class="font-weight-bolder font-size-14"> Tax rate (%) <span
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-sm-4">
+                        <label class="font-weight-bolder font-size-14"> Tax rate (%) <span
                     class="label label-sm label-dot label-danger position-absolute mt-1 ml-1">*</span></label>
-            <input formControlName="rate"
-                   type="text"
-                   class="form-control cust-input-focus"
-                   placeholder="Enter tax rate %">
-          </div>
+                        <input formControlName="rate" type="text" class="form-control cust-input-focus" placeholder="Enter tax rate %">
+                    </div>
 
-        </div>
-        <div class="row mt-5">
-          <div class="col-sm-12 float-right text-right">
-            <button type="button"
-                    class="btn btn-secondary btn-sm">Cancel</button>
-            <button type="button"
-                    class="btn btn-success btn-sm"
-                    (click)="onSubmit()"
-                    [disabled]="form.invalid"><u>S</u>ave</button>
-          </div>
-        </div>
-      </form>
-      <!--start Content-->
-      <div class="row">
-        <div class="col-sm-12">
-          <h2 class="mt-10 font-weight-bolder">Sales Taxes</h2>
-          <table class="table">
-            <tbody >
-              <tr>
-                <th class="font-size-15">Name</th>
-                <th></th>
-                <th></th>
-                <th class="font-size-15">Action</th>
-              </tr>
-              <ng-container *ngIf="salesTaxes?.length; else noRecord">
-                <tr class="table-row"
-                    *ngFor="let item of salesTaxes">
-                  <td colspan="1"><span class="font-size-15">{{item.name}} ({{item.rate}}%) </span></td>
-                  <td colspan="1"> </td>
-                  <td colspan="1"> </td>
-                  <td colspan="1">
-                    <a class="btn-clean"
-                       (click)="onEdit(item.id)">
-                      <span class="svg-icon-xl ml-5"
-                            matTooltip="Edit"
-                            matTooltipPosition="above">
+                </div>
+                <div class="row mt-5">
+                    <div class="col-sm-12 float-right text-right">
+                        <button type="button" (click)="reset()" class="btn btn-secondary btn-sm">Cancel</button>
+                        <button type="button" class="btn btn-success btn-sm" (click)="onSubmit()" [disabled]="form.invalid"><u>S</u>ave</button>
+                    </div>
+                </div>
+            </form>
+            <!--start Content-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="mt-10 font-weight-bolder">Sales Taxes</h2>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="font-size-15">Name</th>
+                                <th></th>
+                                <th></th>
+                                <th class="font-size-15">Action</th>
+                            </tr>
+                            <ng-container *ngIf="salesTaxes?.length; else noRecord">
+                                <tr class="table-row" *ngFor="let item of salesTaxes">
+                                    <td colspan="1"><span class="font-size-15">{{item.name}} ({{item.rate}}%) </span></td>
+                                    <td colspan="1"> </td>
+                                    <td colspan="1"> </td>
+                                    <td colspan="1">
+                                        <a class="btn-clean" (click)="onEdit(item.id)">
+                                            <span class="svg-icon-xl ml-5" matTooltip="Edit" matTooltipPosition="above">
                         edit
                       </span>
-                    </a>
-                  </td>
-                </tr>
-              </ng-container>
-              <ng-template #noRecord>
-                No Records
-              </ng-template>
-            </tbody>
-          </table>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <ng-template #noRecord>
+                                No Records
+                            </ng-template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end Content-->
         </div>
-      </div>
-      <!--end Content-->
     </div>
-  </div>
 </div>

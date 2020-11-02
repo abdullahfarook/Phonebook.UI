@@ -3,6 +3,7 @@ import { SalesTaxService } from '../../services/sales-tax.service';
 import { ActivatedRoute } from '@angular/router';
 import { SalesTax } from 'src/app/core/model/sale-tax';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {plainToClass} from 'class-transformer';
 
 @Component({
   selector: 'app-sale-tax',
@@ -37,7 +38,6 @@ export class SaleTaxComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private salesTaxService: SalesTaxService,
     private activatedRoute: ActivatedRoute
   ) {
     this.initForm();
@@ -46,7 +46,7 @@ export class SaleTaxComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (this.businessId) await this.getSalesTaxes();
+    
   }
 
   async getSalesTaxes() {
@@ -83,28 +83,33 @@ export class SaleTaxComponent implements OnInit {
   async onEdit(id: string) {
     this.salesTaxId = id;
     this.loading = true;
-    this.salesTax = await this.salesTaxService.getSalesTax(
-      this.salesTaxId
-    );
+    this.salesTax = this.salesTaxes.find(x=> x.id === id);
     if (this.salesTax) this.initForm();
     this.loading = false;
   }
 
   async onSubmit() {
     try {
-      this.salesTax.rate = parseFloat(this.form.get('rate').value);
+
+      // this.salesTax.rate = parseFloat(this.form.get('rate').value);
+      this.salesTax = plainToClass(SalesTax,this.form.value)
       if (this.salesTaxId) {
         this.salesTax.id = this.salesTaxId;
-        await this.salesTaxService.update(this.salesTax);
+        const index = this.salesTaxes.findIndex(x=> x.id === this.salesTaxId);
+        this.salesTaxes[index] = this.salesTax;
       } else {
-        await this.salesTaxService.add(this.salesTax);
+        this.salesTaxes.push(this.salesTax);
       }
-      await this.getSalesTaxes();
-      this.salesTax = new SalesTax();
-      this.salesTaxId = '';
-      this.initForm();
+      console.log(this.salesTaxes);
+      // await this.getSalesTaxes();
+      this.reset();
     } catch (res) {
       console.log(res);
     }
+  }
+  reset( ){
+    this.salesTax = new SalesTax();
+      this.salesTaxId = '';
+      this.initForm();
   }
 }

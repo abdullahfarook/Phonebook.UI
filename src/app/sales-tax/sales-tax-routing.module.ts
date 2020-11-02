@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SalesTaxModuleComponent } from './sales-tax.module.component';
 import { SaleTaxesComponent } from './components/sale-taxes/sale-taxes.component';
+import { SaleTaxComponent } from './components/sale-tax/sale-tax.component';
 
 const routes: Routes = [
   { 
@@ -14,8 +15,8 @@ const routes: Routes = [
         component: SaleTaxesComponent
       },
       {
-        path:'/:id',
-        component: SaleTaxesComponent
+        path:':id',
+        component: SaleTaxComponent
       }
     ]
   }
